@@ -2815,6 +2815,60 @@ public class HP_sitemap {
 	                    name: "PRD_HP_PC - View MARVEL Event Detail Page"
 	                },
 	            },
+
+	            // 2024-06-24 이충현 수정, 세스코 마블 챌린지 페이지 pageTypes 선언
+	            // ▼ PRD_HP_PC_event_CESCO_MARVEL
+	            {
+	                name: "PRD_HP_PC_event_CESCO_MARVEL_CHALLENGE",
+	                isMatch: () => /cesco\.co\.kr\/homepage\/newsletter\/detail\?newsletterId=14/.test(window.location.href),
+	                interaction: {
+	                    name: "PRD_HP_PC - View MARVEL CHALLENGE Page"
+	                },
+	            },
+
+	            // 2024-06-24 이충현 수정, 세스코 마블 톡 페이지 pageTypes 선언
+	            // ▼ PRD_HP_PC_event_CESCO_MARVEL
+	            {
+	                name: "PRD_HP_PC_event_CESCO_MARVEL_TALK",
+	                isMatch: () => /cesco\.co\.kr\/homepage\/newsletter\/detail\?newsletterId=15/.test(window.location.href),
+	                interaction: {
+	                    name: "PRD_HP_PC - View MARVEL TALK Page"
+	                },
+	            },
+
+	            // 2024-06-24 이충현 수정, 장소별 추천 소개 페이지 통합(개별 아님)
+	            // ▼ PRD_HP_solution_information_loacations
+	            {
+	                name: "PRD_HP_solution_information_loacations",
+	                isMatch: () => /cesco\.co\.kr\/solution\/place/.test(window.location.href),
+	                interaction: {
+	                   name: "PRD_HP - View Solution Introduce by Location Page"
+	                },
+	            },
+
+	            // 2024-06-24 이충현 수정, 세스코 홈페이지 메인, 솔루션 소개 페이지, 장소별 추천 소개 통합 pagetype 이외에 세스코 홈패이지 내 페이지
+	            // ▼ PRD_HP_homepages
+	            { 
+	                name: "PRD_HP_homepages",
+	                isMatch: () => {
+
+	                    if(/cesco\.co\.kr\/homepage/.test(window.location.href)) {
+	                        
+	                        if(document.querySelector(".board_tit")) {
+	                            const text = document.querySelector(".board_tit").innerText;
+
+	                            if(/마블/.test(text)) {
+	                                return false;
+	                            }
+	                        }
+
+	                        return true;
+	                    }
+	                },
+	                interaction: {
+	                    name: "PRD_HP - View CESCO homepages Page"
+	                },
+	            },
 	                    
 	        ]
 	}
